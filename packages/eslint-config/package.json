@@ -6,7 +6,7 @@
     "library.js",
     "next.js",
     "react-internal.js",
-    "vite.js"
+    "rspack.js"
   ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.1.0",
