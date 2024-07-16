@@ -1,4 +1,4 @@
-import { connectDatabase } from './database'
+import { connectDatabase } from './mongo/database'
 import { createServer } from 'http'
 import { app } from './app'
 
