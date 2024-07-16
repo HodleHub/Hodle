@@ -1,12 +1,18 @@
-const prod = process.env.NODE_ENV === 'production';
-
 const nodeExternals = require('webpack-node-externals');
+const path = require('path');
+const { RunScriptWebpackPlugin } = require('run-script-webpack-plugin');
+
+const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   target: 'node',
   externals: [nodeExternals()],
   entry: {
     main: './src/index.ts',
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -59,4 +65,10 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
+  plugins: [
+    new RunScriptWebpackPlugin({
+      name: 'main.js',
+      autoRestart: false,
+    })
+  ],
 };

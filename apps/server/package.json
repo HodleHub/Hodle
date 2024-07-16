@@ -6,13 +6,15 @@
   "scripts": {
     "build": "rspack --config rspack.config.js",
     "start": "node dist/server.js",
-    "dev": "rspack --watch --config rspack.config.js & ts-node src/index.ts"
+    "dev": "rspack --watch --config rspack.config.js"
   },
   "devDependencies": {
     "@hodler/eslint-config": "*",
+    "@hodler/server": "*",
     "@hodler/typescript-config": "*",
     "@rspack/cli": "^0.7.5",
     "@rspack/core": "^0.7.5",
+    "@types/dotenv-safe": "^8.1.6",
     "@types/kcors": "^2.2.8",
     "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-logger": "^3.1.5",
@@ -32,6 +34,8 @@
     "koa": "^2.15.3",
     "koa-bodyparser": "^4.4.1",
     "koa-logger": "^3.2.1",
-    "koa-router": "^12.0.1"
+    "koa-router": "^12.0.1",
+    "mongoose": "^8.5.1",
+    "run-script-webpack-plugin": "^0.2.0"
   }
 }

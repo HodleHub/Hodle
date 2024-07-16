@@ -62,7 +62,7 @@ app.use(bodyParser())
 //   }),
 // )
 
-router.post('/', (ctx: Context) => {
+router.get('/', (ctx: Context) => {
   ctx.body = 'Hello World!';
 });
 
