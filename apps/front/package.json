@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@hodler/ui": "*",
+    "@radix-ui/themes": "^3.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-relay": "^17.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
     "@hodler/eslint-config": "*",
     "@hodler/typescript-config": "*",
     "@rsbuild/core": "1.0.1-beta.0",
@@ -26,11 +28,17 @@
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
     "babel-plugin-relay": "^17.0.0",
+    "eslint": "9.x",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
+    "globals": "^15.8.0",
     "graphql": "^16.9.0",
     "postcss": "^8.4.39",
     "postcss-loader": "^8.1.1",
+    "prettier": "^3.3.3",
     "relay-compiler": "^17.0.0",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^7.17.0"
   }
 }
