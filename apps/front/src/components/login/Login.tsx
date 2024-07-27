@@ -11,6 +11,13 @@ import {
   Link,
 } from "@radix-ui/themes";
 import React, { useEffect } from "react";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object({
+  email: Yup.string().email('Invalid email address').required('Email is required'),
+  password: Yup.string().required('Password is required'),
+});
 
 export default function Login() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -28,13 +35,25 @@ export default function Login() {
     };
   }, []);
 
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log('Form submitted:', values);
+    },
+  });
+
+
   return (
     <Container className="h-screen flex items-center justify-center" size="1">
       <Card asChild variant="classic" size="4">
-        <form action="/">
+        <form onSubmit={formik.handleSubmit}>
           <Box height="40px" mb="4">
             <Heading as="h3" size="6" mt="-1">
-              <Skeleton loading={isLoading}>Sign up</Skeleton>
+              <Skeleton loading={isLoading}>Sign in</Skeleton>
             </Heading>
           </Box>
 
@@ -46,11 +65,18 @@ export default function Login() {
               <Skeleton loading={isLoading}>
                 <TextField.Root
                   id="email"
+                  name="email"
                   type="email"
                   variant="classic"
                   placeholder="Enter your email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
                 />
               </Skeleton>
+              {formik.touched.email && formik.errors.email ? (
+                <Text color="red" size="1">{formik.errors.email}</Text>
+              ) : null}
             </Flex>
           </Box>
 
@@ -68,11 +94,18 @@ export default function Login() {
               <Skeleton loading={isLoading}>
                 <TextField.Root
                   id="password"
+                  name="password"
                   variant="classic"
                   type="password"
                   placeholder="Enter your password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
                 />
               </Skeleton>
+              {formik.touched.password && formik.errors.password ? (
+                <Text color="red" size="1">{formik.errors.password}</Text>
+              ) : null}
             </Flex>
           </Box>
 
