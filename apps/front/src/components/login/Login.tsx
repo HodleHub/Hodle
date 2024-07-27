@@ -10,13 +10,13 @@ import {
   Heading,
   Link,
 } from "@radix-ui/themes";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Login() {
   const [isLoading, setIsLoading] = React.useState(true);
   const loadingTimeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     loadingTimeoutRef.current = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
@@ -79,7 +79,7 @@ export default function Login() {
           <Flex mt="6" justify="end" gap="3">
             <Skeleton loading={isLoading}>
               <Button variant="surface" highContrast color="gray">
-                Create an account
+                <Link href="/register">Create an account</Link>
               </Button>
             </Skeleton>
             <Skeleton loading={isLoading}>
