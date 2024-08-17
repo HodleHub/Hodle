@@ -1,0 +1,17 @@
+{
+  "name": "@hodler/relay",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/react-relay": "^16.0.6",
+    "@types/relay-runtime": "^17.0.4"
+  },
+  "dependencies": {
+    "react-relay": "^17.0.0",
+    "relay-runtime": "^17.0.0",
+    "sonner": "^1.5.0"
+  }
+}

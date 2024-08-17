@@ -1,0 +1,1 @@
+export { useCustomMutation } from './useCustomMutation';
