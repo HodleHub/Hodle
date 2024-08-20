@@ -1,11 +1,15 @@
 import { GraphQLString, GraphQLFieldConfig } from 'graphql';
 import { GraphQLContext } from '@hodler/types';
 
-const successField: { error: GraphQLFieldConfig<{ success: string | null }, GraphQLContext> } = {
-  error: {
-    type: GraphQLString,
-    resolve: ({ success }) => success ?? null,
-  },
+type SuccessPayload = {
+  success?: string;
 };
 
-export { successField }
+const successField = <T extends SuccessPayload>(): { field: GraphQLFieldConfig<T, GraphQLContext> } => ({
+  field: {
+    type: GraphQLString,
+    resolve: (payload: T) => payload.success ?? null,
+  },
+});
+
+export { successField };

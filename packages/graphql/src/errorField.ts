@@ -1,11 +1,15 @@
 import { GraphQLString, GraphQLFieldConfig } from 'graphql';
 import { GraphQLContext } from '@hodler/types';
 
-const errorField: { error: GraphQLFieldConfig<{ error: string | null }, GraphQLContext> } = {
-  error: {
-    type: GraphQLString,
-    resolve: ({ error }) => error ?? null,
-  },
+type ErrorPayload = {
+  error?: string;
 };
 
-export { errorField }
+const errorField = <T extends ErrorPayload>(): { field: GraphQLFieldConfig<T, GraphQLContext> } => ({
+  field: {
+    type: GraphQLString,
+    resolve: (payload: T) => payload.error ?? null,
+  },
+});
+
+export { errorField };
