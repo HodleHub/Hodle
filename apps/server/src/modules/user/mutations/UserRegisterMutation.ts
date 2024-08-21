@@ -1,26 +1,22 @@
-import { GraphQLNonNull, GraphQLString } from 'graphql';
+import { GraphQLString, GraphQLNonNull } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { UserModel } from '../UserModel';
-import { Types } from 'mongoose';
-import { GraphQLContext } from '../../../graphql/context';
-import { userTypeField } from '../UserFields';
-import { successField, errorField } from '@hodler/graphql';
+import { errorField, successField } from '@hodler/graphql';
 
-type UserRegisterArgs = {
-  username: string;
-  email: string;
-  password: string;
-}
-
-type UserRegisterPayload = {
-  error?: string;
-  token?: string;
-  id?: Types.ObjectId;
+type SuccessPayload = {
   success: string | null;
+  error?: null;
+  id: string;
 };
 
+type ErrorPayload = {
+  error: string | null;
+  success?: null;
+};
 
-const mutation = mutationWithClientMutationId({
+type UserRegisterResponse = SuccessPayload | ErrorPayload;
+
+const UserRegisterMutation = mutationWithClientMutationId({
   name: 'UserRegister',
   description: 'Register a new user',
   inputFields: {
@@ -29,14 +25,11 @@ const mutation = mutationWithClientMutationId({
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
 
-  mutateAndGetPayload: async (args: UserRegisterArgs, context: GraphQLContext): Promise<UserRegisterPayload> => {
+  mutateAndGetPayload: async (args: { username: string; email: string; password: string }): Promise<UserRegisterResponse> => {
     const hasUser = await UserModel.countDocuments({ email: args.email.trim() }) > 0;
-
+    
     if (hasUser) {
-      return {
-        success: null,
-        error: 'This user already exists',
-      };
+      return { success: null, error: 'This user already exists' };
     }
 
     const user = await new UserModel({
@@ -44,20 +37,18 @@ const mutation = mutationWithClientMutationId({
       email: args.email,
       password: args.password,
     }).save();
-
-
+    
     return {
-      id: user._id,
+      error: null,
+      id: user._id.toString(),
       success: 'User registered',
     };
   },
+  
   outputFields: {
     ...errorField,
     ...successField,
-    ...userTypeField('me')
   },
 });
 
-export default {
-  ...mutation,
-};
+export default UserRegisterMutation;

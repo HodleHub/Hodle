@@ -3,21 +3,12 @@ import { mutationWithClientMutationId } from 'graphql-relay'
 import { UserModel } from '../UserModel'
 import { userTypeField } from '../UserFields'
 import { errorField, successField } from '@hodler/graphql'
-import { Types } from 'mongoose'
 import { generateUserToken, setSessionTokenCookie } from '../../../session/setSessionToken'
 
 type UserLoginArgs = {
   email: string
   password: string
 }
-
-type UserLoginPayload = {
-  error?: string;
-  token?: string;
-  id?: Types.ObjectId;
-  success: string | null;
-};
-
 
 const mutation = mutationWithClientMutationId({
   name: 'UserLoginMutation',
@@ -29,7 +20,7 @@ const mutation = mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  mutateAndGetPayload: async (args: UserLoginArgs, context): Promise<UserLoginPayload> => {
+  mutateAndGetPayload: async (args: UserLoginArgs, context)=> {
     const { email, password } = {
       password: args.password.trim(),
       email: args.email.trim().toLowerCase(),
