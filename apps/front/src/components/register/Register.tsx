@@ -11,7 +11,17 @@ import {
 } from "@radix-ui/themes";
 import React, { useEffect } from "react";
 import { useFormik } from 'formik';
+import { useCustomMutation } from '@hodler/relay';
 import * as Yup from 'yup';
+import { UserRegisterMutation } from "./mutation/__generated__/UserRegisterMutation.graphql";
+import { UserRegister } from "./mutation/UserRegister";
+
+type FormValues = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
@@ -38,6 +48,19 @@ export default function Register() {
     };
   }, []);
 
+  const [userRegisterMutation] = useCustomMutation<UserRegisterMutation>({
+    name: 'userRegister',
+    mutation: UserRegister,
+  });
+
+  const onSubmit = async (values: FormValues) => {
+      userRegisterMutation({
+        username: values.name,
+        email: values.email,
+        password: values.password,
+      })
+  } 
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -46,9 +69,7 @@ export default function Register() {
       confirmPassword: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log('Form submitted:', values);
-    },
+    onSubmit,
   });
 
   return (

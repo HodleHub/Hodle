@@ -1,5 +1,6 @@
 import { GraphQLNonNull, GraphQLString } from 'graphql'
 import { mutationWithClientMutationId } from 'graphql-relay'
+
 import { UserModel } from '../UserModel'
 import { userTypeField } from '../UserFields'
 import { errorField, successField } from '@hodler/graphql'
