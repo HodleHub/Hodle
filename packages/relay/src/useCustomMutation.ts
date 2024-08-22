@@ -1,6 +1,6 @@
-import { useMutation } from "react-relay";
-import { GraphQLTaggedNode, MutationParameters } from "relay-runtime";
-import { toast } from "sonner";
+import { useMutation } from 'react-relay';
+import { GraphQLTaggedNode, MutationParameters } from 'relay-runtime';
+import { toast } from 'sonner';
 
 type MutationResponse = {
   success?: string;
@@ -26,7 +26,7 @@ export function useCustomMutation<T extends MutationParameters>({
   mutation,
   afterCompleted,
   afterError,
-}: UseCustomMutationParams<T>): [(variables: T['variables']) => void, boolean] {
+}: UseCustomMutationParams<T>) {
   const [commit, isInFlight] = useMutation<T>(mutation);
 
   const getSuccess = (response: T['response']) => {
@@ -38,20 +38,16 @@ export function useCustomMutation<T extends MutationParameters>({
     if (data.source?.errors) {
       return data.source.errors.join('\n');
     }
+
     return 'An error occurred';
   };
 
   const executeMutation = (variables: T['variables']) => {
-    if (!commit) {
-      console.error('Commit function is not defined');
-      return;
-    }
-
     commit({
       variables,
       onCompleted: (response) => {
         const data = response[name as keyof T['response']] as MutationResponse;
-
+        
         if (data && !data.error && (!data.errors || data.errors.length === 0)) {
           toast.success(getSuccess(response));
         }
@@ -61,12 +57,12 @@ export function useCustomMutation<T extends MutationParameters>({
         }
       },
       onError: (error) => {
-        const data = error as MutationError;
+        const data = error as MutationError; 
         const errorMessage = getError(data);
         toast.error(errorMessage);
 
         if (afterError) {
-          afterError(data, undefined);
+          afterError(data, undefined); 
         }
       },
     });

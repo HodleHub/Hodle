@@ -10,8 +10,6 @@
     "@types/relay-runtime": "^17.0.4"
   },
   "dependencies": {
-    "graphql-http": "^1.22.1",
-    "graphql-ws": "^5.16.0",
     "react-relay": "^17.0.0",
     "relay-runtime": "^17.0.0",
     "sonner": "^1.5.0"

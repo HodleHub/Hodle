@@ -3,6 +3,19 @@ import { mutationWithClientMutationId } from 'graphql-relay';
 import { UserModel } from '../UserModel';
 import { errorField, successField } from '@hodler/graphql';
 
+type SuccessPayload = {
+  success: string | null;
+  error?: null;
+  id: string;
+};
+
+type ErrorPayload = {
+  error: string | null;
+  success?: null;
+};
+
+type UserRegisterResponse = SuccessPayload | ErrorPayload;
+
 const UserRegisterMutation = mutationWithClientMutationId({
   name: 'UserRegister',
   description: 'Register a new user',
@@ -12,7 +25,7 @@ const UserRegisterMutation = mutationWithClientMutationId({
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
 
-  mutateAndGetPayload: async (args: { username: string; email: string; password: string }) => {
+  mutateAndGetPayload: async (args: { username: string; email: string; password: string }): Promise<UserRegisterResponse> => {
     const hasUser = await UserModel.countDocuments({ email: args.email.trim() }) > 0;
     
     if (hasUser) {

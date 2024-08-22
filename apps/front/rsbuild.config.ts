@@ -8,8 +8,8 @@ export default defineConfig({
       jsc: {
         experimental: {
           plugins: [['@swc/plugin-relay', {
-            rootDir: '.',
-            artifactDirectory: "__generated__",
+            rootDir: '_dirname',
+            artifactDirectory: "src/__generated__",
             language: "typescript",
             eagerEsModules: true,
           }]]
