@@ -2,10 +2,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import RelayProvider from './relay/RelayProvider';
 
 const Home = () => {
   return (
-    <h1>ola</h1>
+    <h1 className='text-red-300'>ola</h1>
   )
 }
 
@@ -24,10 +25,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-
 const App = () => {
   return (
-    <RouterProvider router={router} />
+    <RelayProvider>
+      <RouterProvider router={router} />
+    </RelayProvider>
   );
 };
 

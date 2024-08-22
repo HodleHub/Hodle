@@ -26,6 +26,11 @@ module.exports = {
               syntax: 'typescript',
             },
             externalHelpers: true,
+            minify: {
+              compress: {
+                drop_console: false,
+              },
+            },
           },
           env: {
             targets: 'Chrome >= 48',
@@ -50,6 +55,11 @@ module.exports = {
               },
             },
             externalHelpers: true,
+            minify: {
+              compress: {
+                drop_console: false,
+              },
+            },
           },
           env: {
             targets: 'Chrome >= 48',
@@ -71,4 +81,6 @@ module.exports = {
       autoRestart: false,
     })
   ],
+  mode: prod ? 'production' : 'development',
+  devtool: prod ? 'source-map' : 'eval-source-map',
 };
