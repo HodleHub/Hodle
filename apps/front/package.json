@@ -3,14 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "rsbuild dev --open",
-    "build": "rsbuild build",
     "preview": "rsbuild preview",
-    "relay": "relay-compiler"
+    "relay": "relay-compiler",
+    "rspack:build": "rspack build --config rspack.config.js",
+    "rspack:dev": "rspack serve --config rspack.config.js",
+    "dev": "rspack serve --config rspack.config.js",
+    "start": "webpack serve --hot --config rspack.config.js --progress",
+    "build": "cross-env NODE_ENV=production rspack build --config rspack.config.js"
   },
   "dependencies": {
     "@hodler/ui": "*",
     "@radix-ui/themes": "^3.1.1",
+    "@rspack/plugin-html": "^0.5.8",
+    "@rspack/plugin-react-refresh": "^1.0.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "formik": "^2.4.6",
     "react": "^18.3.1",
