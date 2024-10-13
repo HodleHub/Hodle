@@ -40,7 +40,11 @@ type Mutation {
 }
 
 type UserLoginMutationPayload {
-  field: String
+  """Default error field resolver."""
+  error: String
+
+  """Default success field resolver."""
+  success: String
   me: User
   clientMutationId: String
 }
@@ -52,7 +56,11 @@ input UserLoginMutationInput {
 }
 
 type UserRegisterPayload {
-  field: String
+  """Default error field resolver."""
+  error: String
+
+  """Default success field resolver."""
+  success: String
   clientMutationId: String
 }
 

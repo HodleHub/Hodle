@@ -1,7 +1,7 @@
 import { GraphQLString, GraphQLNonNull } from 'graphql';
 import { mutationWithClientMutationId } from 'graphql-relay';
 import { UserModel } from '../UserModel';
-import { errorField, successField } from '@hodler/graphql';
+import { errorField, successField } from '@entria/graphql-mongo-helpers';
 
 const UserRegisterMutation = mutationWithClientMutationId({
   name: 'UserRegister',

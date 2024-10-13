@@ -16,10 +16,10 @@
   "devDependencies": {
     "@hodler/eslint-config": "*",
     "@hodler/graphql": "*",
-    "@hodler/server": "*",
     "@hodler/typescript-config": "*",
     "@rspack/cli": "^0.7.5",
     "@rspack/core": "^0.7.5",
+    "@swc/plugin-relay": "^2.0.15",
     "@types/bcryptjs": "^2.4.6",
     "@types/dotenv-safe": "^8.1.6",
     "@types/jest": "^29.5.12",
