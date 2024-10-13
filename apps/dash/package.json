@@ -12,6 +12,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@hodler/eslint-config": "*",
     "@rsbuild/core": "^1.0.1",
     "@rsbuild/plugin-react": "^1.0.1",
     "@hodler/ui": "*",
