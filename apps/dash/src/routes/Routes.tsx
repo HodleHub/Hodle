@@ -3,10 +3,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { route } from './route'
 
 const router = createBrowserRouter([
-  // {
-  //   path: '/',
-  //   lazy: () => route(import('../components/app/login/Login')),
-  // },
+  {
+    path: '/login',
+    lazy: () => route(import('../components/login/Login')),
+  },
   // {
   //   lazy: () => route(import('../components/app/AppLayout')),
   // },
