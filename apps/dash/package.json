@@ -2,6 +2,7 @@
   "name": "@hodler/dash",
   "private": true,
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "rsbuild dev --open",
     "build": "rsbuild build",
@@ -9,13 +10,14 @@
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
     "@hodler/eslint-config": "*",
+    "@hodler/ui": "*",
     "@rsbuild/core": "^1.0.1",
     "@rsbuild/plugin-react": "^1.0.1",
-    "@hodler/ui": "*",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "tailwindcss": "^3.4.13",
