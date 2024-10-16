@@ -1,5 +1,5 @@
 {
-  "extends": "@hodler/typescript-config/base.json",
+  "extends": "@hodler/typescript-config/nextjs.json",
   "include": [
     "**/*.ts",
     "**/*.tsx",
